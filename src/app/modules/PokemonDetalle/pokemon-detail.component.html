@@ -1,0 +1,58 @@
+<div class="pokemon-detail-container" *ngIf="pokemon">
+    <div class="pokemon-header">
+      <img [src]="pokemon.imageUrl" [alt]="pokemon.name" class="pokemon-image">
+      <h1>{{ pokemon.name | titlecase }}</h1>
+    </div>
+    
+    <div class="pokemon-info">
+      <div class="info-section">
+        <h2>Tipos</h2>
+        <div class="pokemon-types">
+          <span *ngFor="let type of pokemon.types" class="pokemon-type">
+            {{ type }}
+          </span>
+        </div>
+      </div>
+      
+      <div class="info-section">
+        <h2>Estadísticas</h2>
+        <div class="pokemon-stats">
+          <div class="stat">
+            <span>HP</span>
+            <div class="stat-bar" [style.width.%]="pokemon.stats.hp">
+              {{ pokemon.stats.hp }}
+            </div>
+          </div>
+          <div class="stat">
+            <span>Ataque</span>
+            <div class="stat-bar" [style.width.%]="pokemon.stats.attack">
+              {{ pokemon.stats.attack }}
+            </div>
+          </div>
+          <div class="stat">
+            <span>Defensa</span>
+            <div class="stat-bar" [style.width.%]="pokemon.stats.defense">
+              {{ pokemon.stats.defense }}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="info-section">
+        <h2>Habilidades</h2>
+        <ul class="abilities">
+          <li *ngFor="let ability of pokemon.abilities">
+            {{ ability }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="loading" class="loading">
+    Cargando detalles del Pokémon...
+  </div>
+  
+  <div *ngIf="error" class="error">
+    {{ error }}
+  </div>

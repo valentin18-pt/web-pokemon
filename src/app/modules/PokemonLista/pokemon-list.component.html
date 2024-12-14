@@ -1,0 +1,29 @@
+<div class="pokemon-list-container">
+  <div class="header">
+    <h1>Pokédex</h1>
+    <button class="search-button" (click)="goToSearch()">
+      Buscar Pokémon
+    </button>
+  </div>
+  
+  <div *ngIf="loading" class="loading">
+    Cargando Pokémon...
+  </div>
+  
+  <div *ngIf="!loading" class="pokemon-grid">
+    <app-pokemon-card 
+      *ngFor="let pokemon of pokemonList" 
+      [pokemon]="pokemon"
+    ></app-pokemon-card>
+  </div>
+  
+  <div class="pagination">
+    <button (click)="previousPage()" [disabled]="currentPage === 0">
+      Anterior
+    </button>
+    <span>Página {{ currentPage + 1 }}</span>
+    <button (click)="nextPage()" [disabled]="(currentPage + 1) * pageSize >= totalPokemons">
+      Siguiente
+    </button>
+  </div>
+</div>
